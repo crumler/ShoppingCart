@@ -91,8 +91,18 @@ function setItems(product) {
     localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 };
 
+//! Function that calculates total cost of product(s) added to cart
 function totalCost(product) {
     console.log("The product price is ", product.price);
+
+    let cartCost = localStorage.getItem("totalCost");
+    
+    if (cartCost != null) {
+        cartCost = parseInt(cartCost);
+        localStorage.setItem("totalCost", cartCost + product.price);
+    } else {
+        localStorage.setItem("totalCost", product.price);
+    }
 };
 
 onLoadCartNumbers();
